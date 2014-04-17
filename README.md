@@ -28,12 +28,14 @@ acute.module('myApp', [moduleA, moduleB, moduleC, etc])
  /* Bootstrap is a special method that starts an acute app using the named module
  /* method as the seed.
  /**/
-acute.bootstrap('myApp').then(
-    function(injector) {
-        // Boot was successful.  Do something.
-    }, function(err) {
-        // There was an error - do something for errors.
-    });
+acute.bootstrap('myApp', function(err, arg1, arg2....) {
+    if (!err) {
+        // Do something
+    } else {
+        // Error trying to bootstrap the application.
+        console.error(err);
+    }
+}
 
 ---------------------------------------------------
 // ModuleA.js

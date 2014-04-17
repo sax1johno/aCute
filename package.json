@@ -1,0 +1,41 @@
+{
+  "name": "Acute",
+  "description": "A super powered app framework for node.js",
+  "version": "0.0.1",
+   "engines": {
+    "node": "*",
+    "npm":  "*"
+  },
+  "author": {
+    "name": "John O'Connor",
+    "email": "john@catalyzingconcepts.com"
+  },
+  "contributors": [
+    {
+      "name": "John O'Connor",
+      "email": "john@catalyzingconcepts.com"
+    }
+  ],
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "mongoose": "*",
+    "underscore": "*",
+    "nodeunit": "*",
+    "markdown": "*",
+    "mongodb": "*",
+    "connect-mongodb": "*",
+    "q": "*",
+    "natural": "*",
+    "nodemailer": "*",
+    "autocomplete": "*",
+    "less-middleware": "*",
+    "csv": "*",
+    "async": "*",
+    "mocha": "*",
+    "oauth": "*",
+    "passport": "*",
+    "grunt": "*",
+    "intravenous": "*"
+  }
+}
