@@ -1,0 +1,23 @@
+{
+    "name": "controller",
+    "version": "0.0.1",
+    "main": "controller.js",
+    "description": "An controller plugin for aCute.  This plugin adds the ability to easily define and register controllers",
+    "author": {
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    },
+    "contributors": [
+        {
+          "name": "John O'Connor",
+          "email": "sax1johno@gmail.com"
+        }
+    ],
+    "plugin": {
+        "consumes": ["app", "routes"],
+        "provides": ["controller"]
+    },
+  "dependencies": {
+    "express": "*"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "aCute",
+  "description": "A super powered app framework for node.js",
+  "version": "0.0.1",
+   "engines": {
+    "node": "*",
+    "npm":  "*"
+  },
+  "author": {
+    "name": "John O'Connor",
+    "email": "sax1johno@gmail.com"
+  },
+  "main": "acute.js",
+  "contributors": [
+    {
+      "name": "John O'Connor",
+      "email": "sax1johno@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "mongoose": "*",
+    "underscore": "*",
+    "nodeunit": "*",
+    "markdown": "*",
+    "mongodb": "*",
+    "connect-mongodb": "*",
+    "q": "*",
+    "natural": "*",
+    "nodemailer": "*",
+    "autocomplete": "*",
+    "less-middleware": "*",
+    "csv": "*",
+    "async": "*",
+    "mocha": "*",
+    "oauth": "*",
+    "passport": "*",
+    "grunt": "*",
+    "intravenous": "*",
+    "architect": "*"
+  }
