@@ -8,7 +8,10 @@
   * NOTE TO SELF: This is doing too much.  Make the components much more simple.
   * Intravenous does so much for you, so use it as much as you can.  Get rid of
   * configFn's and runFn's until you have the container stuff completely handled.
-  **
+  **/
+  
+  
+  
   
  /*
   * First, load up all of the objects that make this thing work.
@@ -166,6 +169,16 @@ exports.boot = function(seed) {
     
     return bootDefer.promise;
 };
+
+/**
+ * Inject all possible injectables into the function and execute that 
+ * function.
+ * @param fn the function to run.
+ * @throws an error if the function encounters an exception.
+ **/
+var inject = exports.inject = function(fn) {
+    
+}
 
 /**
  * A component factory that allows the user to create new components.
