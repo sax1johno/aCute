@@ -1,8 +1,8 @@
 {
-    "name": "controller",
+    "name": "acute-data",
     "version": "0.0.1",
-    "main": "controller.js",
-    "description": "An controller plugin for aCute.  This plugin adds the ability to easily define and register controllers",
+    "main": "data.js",
+    "description": "Handles connecting to differet data storage engines.",
     "author": {
         "name": "John O'Connor",
         "email": "sax1johno@gmail.com"
@@ -14,10 +14,9 @@
         }
     ],
     "plugin": {
-        "consumes": ["app"],
-        "provides": ["controller"]
+        "provides": ["data"]
     },
   "dependencies": {
-    "express": "*"
+      "mongodb": "*"
   }
 }

@@ -16,7 +16,8 @@
     "plugin": {
         "provides": ["app"]
     },
-  "dependencies": {
-    "express": "*"
-  }
+    "dependencies": {
+        "express": "*",
+        "body-parser": "*"
+    }
 }
