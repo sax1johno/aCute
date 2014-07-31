@@ -1,8 +1,8 @@
 {
-    "name": "acute-data",
+    "name": "acute-data-mongo",
     "version": "0.0.1",
-    "main": "data.js",
-    "description": "Handles connecting to differet data storage engines.",
+    "main": "data-mongo.js",
+    "description": "Handles connecting to a mongodb data source.",
     "author": {
         "name": "John O'Connor",
         "email": "sax1johno@gmail.com"
@@ -14,8 +14,11 @@
         }
     ],
     "plugin": {
-        "provides": ["data"]
+        "consumes": ["data"],
+        "provides": ["data-mongo"]
     },
   "dependencies": {
+      "mongodb": "*",
+      "mongoose": "*"
   }
 }

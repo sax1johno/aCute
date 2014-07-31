@@ -2,7 +2,7 @@
  * This file runs the application bootstrap, and can be used to run other
  * arbitrary code and configurations.
  **/
-var $acute = require('../lib/acute'),
+var $acute = require('../../lib/acute'),
     $config = require('./config');
 
 
