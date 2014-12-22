@@ -1,0 +1,10 @@
+{
+    "name": "acute-express-mvc",
+    "version": "0.0.1",
+    "main": "lib/index.js",
+    "private": true,
+    "plugin": {
+        "provides": ["mvc"],
+        "consumes": ["config", "app", "data", "model", "view", "controller"]
+    }
+}

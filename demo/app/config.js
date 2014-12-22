@@ -1,5 +1,3 @@
-var express = require('express');
-
 // Return the initial application configuration method.
 module.exports = [
     { 
@@ -19,7 +17,7 @@ module.exports = [
     },
     {
         packagePath: "./core/data",
-        environment: {
+        environments: {
             production: {
                 data: {
                     provider: "mongodb",
@@ -47,5 +45,8 @@ module.exports = [
             }
         }
     },
-    "./core/controller"
+    "./core/controller",
+    "./core/acute-express-app",
+    "./core/acute-express-data",
+    "./core/acute-express-mvc"
 ];

@@ -37,6 +37,5 @@
     "oauth": "*",
     "passport": "*",
     "grunt": "*",
-    "intravenous": "*",
     "architect": "*"
   }
