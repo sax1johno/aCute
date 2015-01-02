@@ -2,6 +2,9 @@
  * Reads and stores information about different database configurations based on the current
  * environment.  Gets the environment from the app.settings.env variable, which itself reads
  * the NODE_ENV environment variable and defaults to "development" if none is present.
+ * 
+ * The "data" plugins themselves are not tied to any single platform, but instead
+ * provide an interface for implementing other data connectors.
  **/
 
 /**

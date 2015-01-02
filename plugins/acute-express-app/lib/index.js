@@ -11,13 +11,18 @@
  */
 module.exports = function setup(options, imports, register) {
     var express = require('express'),
-        app = express(),
+        app = express(),          // The main running app
+        subapp = express,         // A constructor for subapps
+        router = express.Router,  // A constructor / factory for new routers.
         defaultConfig = require('../config'), // contains all possible configuration options
         userConfig = options.configFileLocation || (__dirname + '../../config.js'),
         finalConfig = {},
-        async = require('async');
+        async = require('async'),
+        _ = require("underscore");
         
-    async.each(defaultConfig.keys(), function(configItem, cb) {
+    console.log("config = ", defaultConfig);
+    console.log("userConfig = ", userConfig);
+    async.each(_.keys(defaultConfig), function(configItem, cb) {
       if (userConfig.hasOwnProperty(configItem)) {
         finalConfig.configItem = userConfig.configItem;
       } else {
@@ -30,10 +35,15 @@ module.exports = function setup(options, imports, register) {
       } else {
         register(null, {
           // "app" is the service this plugin provides
-          config: finalConfig
+          app: {
+            app: app,
+            router: router,
+            subapp: subapp
+          }
         });
       }
     });
 //   var db = imports.database;
 
 };
+

@@ -22,8 +22,9 @@ module.exports = function(injector, router) {
    router.all("/", index);
    
    return {
-       config: {
+      routes: router,
+      config: {
            // base_path: "/test"
-       }
+      }
    }
 }

@@ -1,0 +1,10 @@
+{
+    "name": "acute-express-controllers",
+    "version": "0.0.1",
+    "main": "lib/index.js",
+    "private": true,
+    "plugin": {
+        "provides": ["controllers"],
+        "consumes": ["utils", "config", "app", "data", "models", "views"]
+    }
+}

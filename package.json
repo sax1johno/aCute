@@ -32,6 +32,7 @@
     "architect": "*",
     "body-parser": "*",
     "morgan": "*",
-    "express-session": "*"
+    "express-session": "*",
+    "findit": "*"    
   }
 }
