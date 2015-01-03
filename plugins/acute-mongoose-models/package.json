@@ -1,13 +1,14 @@
 {
-    "name": "acute-express-data",
+    "name": "acute-mongoose-models",
     "version": "0.0.1",
     "main": "lib/index.js",
     "private": true,
     "plugin": {
-        "provides": ["data"],
+        "provides": ["models"],
         "consumes": [
             "app",
-            "data-mongodb"
+            "data",
+            "utils"
         ]
     },
     "dependencies": {

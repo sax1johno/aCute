@@ -5,6 +5,6 @@
     "private": true,
     "plugin": {
         "provides": ["controllers"],
-        "consumes": ["utils", "config", "app", "data", "models", "views"]
+        "consumes": ["utils", "app", "data", "models", "views"]
     }
 }
