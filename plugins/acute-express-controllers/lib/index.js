@@ -9,7 +9,17 @@ var async = require('async'),
     acuteUtils,
     app;
 
-var loadControllers = function(fn) {
+
+var add = function(controller, fn) {
+  try {
+    app.use(controller);
+    fn(null);
+  } catch (e) {
+    fn(e);
+  }
+};
+
+var load = function(fn) {
     // TODO: walk through the controllers directory structure and load up each
     // controller.
     acuteUtils.walkFs(path.join(config.controller_basedir, config.controller_dirname), function(err, files) {
@@ -19,13 +29,14 @@ var loadControllers = function(fn) {
         } else {
           console.log("files in controller directory are ", files);
           async.each(files, function(file, cb) {
-            addController(file, function(err) {
+            var controller = require(file);
+            add(controller, function(err) {
               if(!err) {
                 cb();
               } else {
                 cb(err);
               }
-            })
+            });
           }, function(err) {
             if (err) {
               fn(err);
@@ -35,12 +46,8 @@ var loadControllers = function(fn) {
           });
         }
     });
-}
+};
 
-var addController = function(file, fn) {
-  var controller = require(file);
-  app.use(controller);
-}
 /**
  * @options is the hash of options the user passes in when creating an instance
  * of the plugin.
@@ -59,19 +66,11 @@ module.exports = function setup(options, imports, register) {
       config.controller_dirname = options.controller_dirname;
     }
     
-    // async.series([
-    //   function(cb) {
-    //     controllers.registerControllers(app);
-    //   },
-    // ], function(err, results) {
-      
-    // })
-  
   register(null, {
     controllers: {
-      loadControllers: loadControllers,
-      addController: addController
-      // Services that MVC provides will go here.
+      load: load,
+      add: add,
+      Router: app.Router
     }
   });
 };

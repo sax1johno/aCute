@@ -1,10 +1,10 @@
 {
-  "name": "Acute",
+  "name": "aCute",
   "description": "A super powered app framework for node.js",
   "version": "0.0.1",
-   "engines": {
+  "engines": {
     "node": "*",
-    "npm":  "*"
+    "npm": "*"
   },
   "author": {
     "name": "John O'Connor",
@@ -16,6 +16,16 @@
       "email": "sax1johno@gmail.com"
     }
   ],
+  "scripts": {
+    "start": "node app/app.js"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-nodeunit": "*",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-uglify": "*"
+  },
   "dependencies": {
     "express": "*",
     "jade": "*",
@@ -33,6 +43,6 @@
     "body-parser": "*",
     "morgan": "*",
     "express-session": "*",
-    "findit": "*"    
+    "findit": "*"
   }
 }

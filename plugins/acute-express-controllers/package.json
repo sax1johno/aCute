@@ -1,10 +1,28 @@
 {
     "name": "acute-express-controllers",
+    "description": "An aCute app plugin for using controllers that use express-like router objects",
     "version": "0.0.1",
     "main": "lib/index.js",
-    "private": true,
+    "author": {
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    },
+    "contributors": [{
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    }],
+    "dependencies": {
+        "express": ">4.0",
+        "async": "*",
+        "underscore": "*",
+        "architect": "*",
+        "path": "*"
+    },
+    "scripts": {
+        "generate": "node lib/generator.js"
+    },
     "plugin": {
         "provides": ["controllers"],
-        "consumes": ["utils", "app", "data", "models", "views"]
+        "consumes": ["utils", "app"]
     }
 }

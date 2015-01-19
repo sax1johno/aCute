@@ -1,8 +1,22 @@
 {
     "name": "acute-express-app",
+    "description": "An aCute app plugin for using express as the application provider",
     "version": "0.0.1",
     "main": "lib/index.js",
-    "private": true,
+    "author": {
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    },
+    "contributors": [{
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    }],
+    "dependencies": {
+        "express": ">4.0",
+        "async": "*",
+        "underscore": "*",
+        "architect": "*"
+    },
     "plugin": {
         "provides": ["app"]
     }

@@ -1,0 +1,48 @@
+{
+    "name": "acute-framework",
+    "description": "A super-charged app development framework for node.js",
+    "version": "0.0.1",
+    "keywords": [],
+    "author": {
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    },
+    "contributors": [{
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    }],
+    "preferGlobal": "true",
+    "bin": {
+        "acute": "bin/acute"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/sax1johno/aCute.git"
+    },
+    "bugs": {
+        "url": "https://github.com/sax1johno/aCute/issues"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/sax1johno/aCute/blob/master/LICENSE"
+    }],
+    "scripts": {
+        "test": "grunt test",
+        "start": "node app/app.js"
+    },
+    "devDependencies": {
+        "grunt": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-nodeunit": "*",
+        "grunt-contrib-sass": "^0.8.1",
+        "grunt-contrib-uglify": "*"
+    },
+    "dependencies": {
+        "underscore": "*",
+        "async": "*",
+        "mongoose": "*",
+        "util": "*",
+        "path": "*",
+        "commander": "*"
+    }
+}

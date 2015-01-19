@@ -36,6 +36,7 @@ module.exports = function setup(options, imports, register) {
         register(null, {
           // "app" is the service this plugin provides
           app: {
+            config: finalConfig,
             app: app,
             router: router,
             subapp: subapp

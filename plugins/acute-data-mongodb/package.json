@@ -1,8 +1,22 @@
 {
     "name": "acute-data-mongodb",
+    "description": "An aCute app plugin for using mongodb data sources",
     "version": "0.0.1",
     "main": "lib/index.js",
-    "private": true,
+    "author": {
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    },
+    "contributors": [{
+        "name": "John O'Connor",
+        "email": "sax1johno@gmail.com"
+    }],
+    "dependencies": {
+        "async": "*",
+        "mongoose": "*",
+        "architect": "*",
+        "path": "*"
+    },
     "plugin": {
         "provides": ["data-mongodb"]
     }

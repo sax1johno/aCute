@@ -20,10 +20,17 @@ describe('utils', function() {
             }
         });
     });
-    describe("#walkFs", function() {
-        it("should walk the file system correctly", function(done) {
-            var serviceObject = app.getService("utils");
-            app.services.utils.walkFs(path.join(__dirname, "testdir"), function(err, file) {
+    describe("#add", function() {
+        it("should add a controller to the controllers", function(done) {
+            var serviceObject = app.getService("controllers");
+            
+            // Controllers are just files that export a router or app object.
+            var router = serviceObject.Router();
+            router.get("/", function(req, res, next) {
+                console.log("This is the inside of the request");
+                res.send({"success": ""});
+            });
+            app.services.controllers.add(router, function(err, file) {
                 if (err) {
                     console.log(err);
                 } else {
@@ -35,55 +42,4 @@ describe('utils', function() {
             });
         });
     });
-    describe("#pathsToFileTree", function() {
-        it("should walk the file system correctly", function(done) {
-            var serviceObject = app.getService("utils");
-            app.services.utils.walkFs(path.join(__dirname, "testdir"), function(err, fileArray) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    app.services.utils.pathsToFileTree(fileArray, path.join(__dirname, "testdir"), function(err, fileTree) {
-                        if (err) {
-                            console.error(err);
-                        } 
-                        console.log("file tree = ", fileTree);
-                        done();
-                    });
-                }
-                // console.log(file);
-                // done();
-            });
-        });
-    });
-    describe("#urlFromPathComponents", function() {
-        it("should create a url from path components", function(done) {
-            var serviceObject = app.getService("utils");
-            app.services.utils.walkFs(path.join(__dirname, "testdir"), function(err, fileArray) {
-                if (err) {
-                    console.log(err);
-                    done();
-                } else {
-                    app.services.utils.pathsToFileTree(fileArray, path.join(__dirname, "testdir"), function(err, fileTree) {
-                        if (err) {
-                            console.error(err);
-                            done();
-                        } else {
-                            var routes = [];
-                            async.each(fileTree, function(item, cb) {
-                                app.services.utils.urlFromPathComponents(item, "/", function(route) {
-                                    routes.push(route);
-                                    cb();
-                                })
-                            }, function(err) {
-                                console.log(routes);
-                                done();
-                            })
-                        }
-                    });
-                }
-                // console.log(file);
-                // done();
-            });
-        });
-    });        
 });
