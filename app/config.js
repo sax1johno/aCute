@@ -1,11 +1,7 @@
 // Return the initial application configuration method.
 module.exports = [
-    { 
-        packagePath: "./acute",
-        environment: "production",
-    },
     {
-        packagePath: "./core/app",
+        packagePath: "../plugins/acute-express-app",
         port: process.env.PORT || 8080,
         appSettings: {
             uploadDir: "/public/files",
@@ -16,7 +12,7 @@ module.exports = [
         }
     },
     {
-        packagePath: "./core/data",
+        packagePath: "../plugins/acute-express-data",
         environments: {
             production: {
                 data: {
@@ -45,8 +41,9 @@ module.exports = [
             }
         }
     },
-    "./core/controller",
-    "./core/acute-express-app",
-    "./core/acute-express-data",
-    "./core/acute-express-mvc"
+    "../plugins/acute-express-controllers",
+    "../plugins/acute-express-controllers",
+    "../plugins/acute-express-controllers",
+    "../plugins/acute-"
+    // "./core/acute-express-mvc"
 ];

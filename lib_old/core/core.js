@@ -1,9 +1,0 @@
-require('./app');
-require('./config');
-require('./controller');
-require('./middleware');
-require('./model');
-require('./provider');
-require('./service');
-require('./utility');
-require('./view');

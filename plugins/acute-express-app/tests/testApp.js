@@ -43,7 +43,7 @@ describe('app', function() {
     describe("#router", function() {
         it("should return an express router", function(done) {
             var serviceObject = thisApp.getService("app");
-            var router = serviceObject.router();
+            var router = serviceObject.Router();
             var app = serviceObject.app;
             router.get("/testRoute", function(req, res, next) {
                 console.log("Test get request");

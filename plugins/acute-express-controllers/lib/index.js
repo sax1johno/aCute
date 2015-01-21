@@ -1,18 +1,24 @@
 /**
  * acute-express-controllers walks the specified folder / file system for  all
  * of the application controllers.  Controllers return Routes and use the folder
- * names to determine the default route structure.
+ * names to determine the default route structure.  The folder-name convention
+ * can be overridden by exporting a "mountPath" option from the controller.
+ * 
  **/
 var async = require('async'),
     path = require('path'),
     config,  // Default configuration
     acuteUtils,
-    app;
+    app,
+    _ = require("underscore"),
+    sutil = require('util');
 
-
-var add = function(controller, fn) {
+var add = function(mountPath, router, fn) {
   try {
-    app.use(controller);
+    if (!mountPath) {
+      mountPath = "/";
+    }
+    app.app.use(mountPath, router);
     fn(null);
   } catch (e) {
     fn(e);
@@ -22,15 +28,27 @@ var add = function(controller, fn) {
 var load = function(fn) {
     // TODO: walk through the controllers directory structure and load up each
     // controller.
+    console.log("config = ", sutil.inspect(config));
     acuteUtils.walkFs(path.join(config.controller_basedir, config.controller_dirname), function(err, files) {
         if (err) {
           fn(err);
             // completeFn();
         } else {
-          console.log("files in controller directory are ", files);
           async.each(files, function(file, cb) {
-            var controller = require(file);
-            add(controller, function(err) {
+            file = file.substr(0, file.lastIndexOf('.'));
+            var controller = require(file)(app.Router());
+            if (_.isUndefined(controller.mountPath)) {
+              var relPath = path.relative(path.join(config.controller_basedir, config.controller_dirname), file);
+              var p = relPath.split(path.sep)
+              p.pop();
+              if (!_.isEmpty(p)) {
+                controller.mountPath = path.sep + p.join(path.sep);
+              } else {
+                controller.mountPath = "/";
+              }
+              console.log(controller.mountPath);
+            }
+            add(controller.mountPath, controller.router, function(err) {
               if(!err) {
                 cb();
               } else {
@@ -58,7 +76,8 @@ module.exports = function setup(options, imports, register) {
     config = require('../config'),  // Default configuration
     acuteUtils = imports.utils,
     app = imports.app;
-        
+    
+    // console.log("Inside of setup, router = ", app.router);
     if (options.controller_basedir) {
       config.controller_basedir = options.controller_basedir;
     }

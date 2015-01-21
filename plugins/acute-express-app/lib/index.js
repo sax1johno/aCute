@@ -38,8 +38,8 @@ module.exports = function setup(options, imports, register) {
           app: {
             config: finalConfig,
             app: app,
-            router: router,
-            subapp: subapp
+            Router: router,
+            Subapp: subapp
           }
         });
       }
