@@ -14,37 +14,28 @@ module.exports = function setup(options, imports, register) {
         app = express(),          // The main running app
         subapp = express,         // A constructor for subapps
         router = express.Router,  // A constructor / factory for new routers.
-        defaultConfig = require('../config'), // contains all possible configuration options
-        userConfig = options.configFileLocation || (__dirname + '../../config.js'),
-        finalConfig = {},
+        // defaultConfig = require('../config'), // contains all possible configuration options
+        // userConfig = options.configFileLocation || (__dirname + '../../config.js'),
+        sutil = require('util'),
         async = require('async'),
-        _ = require("underscore");
-        
-    console.log("config = ", defaultConfig);
-    console.log("userConfig = ", userConfig);
-    async.each(_.keys(defaultConfig), function(configItem, cb) {
-      if (userConfig.hasOwnProperty(configItem)) {
-        finalConfig.configItem = userConfig.configItem;
-      } else {
-        finalConfig.configItem = defaultConfig.configItem;
+        _ = require("underscore"),
+        finalConfig = {};
+      
+    console.log("************options = ", options);
+    // Run the app config function in the settings if it's present.
+    if (!_.isUndefined(options.appConfig) && _.isFunction(options.appConfig)) {
+      options.appConfig(app);
+    }
+    // console.log('finalConfig = ', finalConfig);
+    register(null, {
+      // "app" is the service this plugin provides
+      app: {
+        config: finalConfig,
+        app: app,
+        Router: router,
+        Subapp: subapp
       }
-      cb();
-    }, function(err) {
-      if (err) {
-        register(err);
-      } else {
-        register(null, {
-          // "app" is the service this plugin provides
-          app: {
-            config: finalConfig,
-            app: app,
-            Router: router,
-            Subapp: subapp
-          }
-        });
-      }
-    });
-//   var db = imports.database;
-
+  });
 };
+//   var db = imports.database;
 

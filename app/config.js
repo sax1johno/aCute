@@ -1,15 +1,18 @@
-// Return the initial application configuration method.
+var express = require('express'),
+    bodyparser = require('body-parser'),
+    session = require('express-session');
+
 module.exports = [
     {
         packagePath: "../plugins/acute-express-app",
         port: process.env.PORT || 8080,
-        appSettings: {
-            uploadDir: "/public/files",
-            publicdir: "/public",
-            sessionSecretSalt: "keyboardcat",
-            viewsDir: "/views",
-            viewEngine: "jade"
-        }
+        appConfig: function(app, fn) {
+            // app.set('uploadDir', "/public/files");
+            app.use(express.static(__dirname + '/app/public'));
+            app.use(session({ secret: "keyboardcat" }));
+            app.set('views', __dirname + "/views");
+            app.set('view engine', "jade");
+        },
     },
     {
         packagePath: "../plugins/acute-express-data",
@@ -42,8 +45,8 @@ module.exports = [
         }
     },
     "../plugins/acute-express-controllers",
-    "../plugins/acute-express-controllers",
-    "../plugins/acute-express-controllers",
-    "../plugins/acute-"
+    "../plugins/acute-express-utils",
+    "../plugins/acute-mongoose-models",
+    "../plugins/acute-data-mongodb"
     // "./core/acute-express-mvc"
 ];

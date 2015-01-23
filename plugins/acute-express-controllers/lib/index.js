@@ -12,11 +12,13 @@ var async = require('async'),
     app,
     _ = require("underscore"),
     sutil = require('util');
+  
+var DEFAULT_MOUNTPATH = "/";
 
 var add = function(mountPath, router, fn) {
   try {
     if (!mountPath) {
-      mountPath = "/";
+      mountPath = DEFAULT_MOUNTPATH;
     }
     app.app.use(mountPath, router);
     fn(null);
@@ -25,11 +27,13 @@ var add = function(mountPath, router, fn) {
   }
 };
 
-var load = function(fn) {
-    // TODO: walk through the controllers directory structure and load up each
-    // controller.
-    console.log("config = ", sutil.inspect(config));
-    acuteUtils.walkFs(path.join(config.controller_basedir, config.controller_dirname), function(err, files) {
+/**
+ * Load all of the controllers found in the specified controllers
+ * directory.  Basedir is the base directory for the package that contains the controllers
+ * and dirname is the directory that the controllers are contained in.
+ **/
+var loadFromFS = function(basedir, dirname, fn) {
+    acuteUtils.walkFs(path.join(basedir, dirname), function(err, files) {
         if (err) {
           fn(err);
             // completeFn();
@@ -38,13 +42,13 @@ var load = function(fn) {
             file = file.substr(0, file.lastIndexOf('.'));
             var controller = require(file)(app.Router());
             if (_.isUndefined(controller.mountPath)) {
-              var relPath = path.relative(path.join(config.controller_basedir, config.controller_dirname), file);
+              var relPath = path.relative(path.join(basedir, dirname), file);
               var p = relPath.split(path.sep)
               p.pop();
               if (!_.isEmpty(p)) {
                 controller.mountPath = path.sep + p.join(path.sep);
               } else {
-                controller.mountPath = "/";
+                controller.mountPath = DEFAULT_MOUNTPATH;
               }
               console.log(controller.mountPath);
             }
@@ -64,6 +68,14 @@ var load = function(fn) {
           });
         }
     });
+};
+
+/**
+ * Load the controllers from the configured location.
+ **/
+var load = function(fn) {
+    console.log("config = ", sutil.inspect(config));
+    loadFromFS(config.controller_basedir, config.controller_dirname, fn);
 };
 
 /**
@@ -88,6 +100,7 @@ module.exports = function setup(options, imports, register) {
   register(null, {
     controllers: {
       load: load,
+      loadFromFS: loadFromFS,
       add: add,
       Router: app.Router
     }

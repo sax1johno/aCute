@@ -30,7 +30,7 @@ describe('app', function() {
     describe("#subapp", function() {
         it("should return a new express app", function(done) {
             var serviceObject = thisApp.getService("app");
-            var subapp = serviceObject.subapp();
+            var subapp = serviceObject.Subapp();
             var app = serviceObject.app;
             subapp.get("/test", function(req, res, next) {
                 console.log("Test get request");
