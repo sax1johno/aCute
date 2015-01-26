@@ -44,19 +44,19 @@ module.exports = function setup(options, imports, register) {
     } catch (e) {
       fn(e);
     }
-  }
-  
+  };
+
   /**
    * Walk through the models directory and add all of the models there
    * to the app.
    **/
-  var load = function(fn) {
-    acuteUtils.walkFs(path.join(config.model_basedir, config.model_dirname), function(err, files) {
+  var loadFromFS = function(basedir, dirname, fn) {
+    acuteUtils.walkFs(path.join(basedir, dirname), function(err, files) {
         if (err) {
           fn(err);
             // completeFn();
         } else {
-          console.log("files in controller directory are ", files);
+          console.log("files are ", files);
           async.each(files, function(file, cb) {
             var model = require(file);
             add(model.name, model.schema, function(err) {
@@ -77,12 +77,21 @@ module.exports = function setup(options, imports, register) {
     });
   };
   
+    /**
+     * Load the controllers from the configured location.
+     **/
+    var load = function(fn) {
+        console.log("config = ", sutil.inspect(config));
+        loadFromFS(config.model_basedir, config.model_dirname, fn);
+    };
+
       register(null, {
         models: {
           mongoose: mongoose,
           Schema: mongoose.Schema,
           add: add,
           load: load,
+          loadFromFS: loadFromFS,
           get: get
         }
       });
