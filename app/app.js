@@ -19,9 +19,7 @@ var architect = require('architect'),
          * Listen on the configured port.
          **/
          var appService = arch.getService("app");
-         console.log("App service = ", appService);
          appService.app.listen(appService.config.port);
-        // app.server.listen(); // The app config contains a parameter 'port'.
         console.log("Now listeneing to acute app on port ", appService.config.port);
     } else {
         // If the boot promise is rejected, then display the errors.

@@ -27,22 +27,15 @@
     "grunt-contrib-uglify": "*"
   },
   "dependencies": {
-    "express": "*",
-    "jade": "*",
-    "mongoose": "*",
-    "underscore": "*",
-    "markdown": "*",
-    "mongodb": "*",
-    "connect-mongodb": "*",
-    "q": "*",
-    "async": "*",
-    "mocha": "*",
-    "grunt": "*",
-    "brunch": "*",
     "architect": "*",
-    "body-parser": "*",
+    "path": "*",
     "morgan": "*",
     "express-session": "*",
-    "findit": "*"
+    "findit": "*",
+    "acute-data-mongodb": "*",
+    "acute-express-app": "*",
+    "acute-express-data": "*",
+    "acute-express-utils": "*",
+    "acute-mongoose-models": "*"
   }
 }
