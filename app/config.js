@@ -1,10 +1,9 @@
 var express = require('express'),
-    bodyparser = require('body-parser'),
     session = require('express-session');
 
 module.exports = [
     {
-        packagePath: "../plugins/acute-express-app",
+        packagePath: "acute-express-app",
         port: process.env.PORT || 8080,
         appConfig: function(app, fn) {
             // app.set('uploadDir', "/public/files");
@@ -15,7 +14,7 @@ module.exports = [
         },
     },
     {
-        packagePath: "../plugins/acute-express-data",
+        packagePath: "acute-express-data",
         environments: {
             production: {
                 data: {
@@ -44,9 +43,9 @@ module.exports = [
             }
         }
     },
-    "../plugins/acute-express-controllers",
-    "../plugins/acute-express-utils",
-    "../plugins/acute-mongoose-models",
-    "../plugins/acute-data-mongodb"
+    "acute-express-controllers",
+    "acute-express-utils",
+    "acute-mongoose-models",
+    "acute-data-mongodb"
     // "./core/acute-express-mvc"
 ];

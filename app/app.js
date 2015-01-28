@@ -13,6 +13,8 @@ var architect = require('architect'),
  * you'd like and the application configures the port.
  **/
  
+ console.log("Booting app");
+ 
  architect.createApp(config, function(err, arch) {
     if (!err) {
         /**

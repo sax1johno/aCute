@@ -19,19 +19,13 @@
   "scripts": {
     "start": "node app/app.js"
   },
-  "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-nodeunit": "*",
-    "grunt-contrib-sass": "^0.8.1",
-    "grunt-contrib-uglify": "*"
-  },
   "dependencies": {
     "architect": "*",
     "path": "*",
     "morgan": "*",
+    "express": ">4",
     "express-session": "*",
-    "findit": "*",
+    "body-parser": "*",
     "acute-data-mongodb": "*",
     "acute-express-app": "*",
     "acute-express-data": "*",
