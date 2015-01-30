@@ -21,10 +21,9 @@ architect.loadConfig(configPath, function(err, conf) {
                 /**
                  * Listen on the configured port.
                  **/
-                 var appService = arch.getService("app");
-                 console.log("config = ", appService.appConfig);
-                 appService.app.listen(appService.config.port);
-                console.log("Now listeneing to acute app on port ", appService.config.port);
+                var appService = arch.getService("app");
+                appService.app.listen(appService.config.port);
+                console.log("Now listening to acute app on port ", appService.config.port);
             } else {
                 // If the boot promise is rejected, then display the errors.
                 console.error("Unable to boot application: ", err);
