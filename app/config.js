@@ -4,11 +4,19 @@ var express = require('express'),
 module.exports = [
     {
         packagePath: "acute-express-app",
-        port: process.env.PORT || 8080,
+        config: {
+            port: process.env.PORT || 8080,
+        },
         appConfig: function(app, fn) {
             // app.set('uploadDir', "/public/files");
             app.use(express.static(__dirname + '/app/public'));
-            app.use(session({ secret: "keyboardcat" }));
+            app.use(
+                session({ 
+                    secret: "keyboardcat",   
+                    resave: false,
+                    saveUninitialized: true
+                })
+            );
             app.set('views', __dirname + "/views");
             app.set('view engine', "jade");
         },
